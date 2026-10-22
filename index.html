@@ -1,0 +1,1513 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b0612">
+<title>EVG | Edición Halloween</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Creepster&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg:#0b0612;
+  --surface:#150c22;
+  --surface-2:#1d1130;
+  --line:#38225a;
+  --fg:#f4eeff;
+  --muted:#a99bc9;
+  --orange:#ff7a1a;
+  --green:#7dff3a;
+  --purple:#b44dff;
+  --pink:#ff2fa6;
+  --gold:#ffc21a;
+  --display:'Creepster',Impact,system-ui,sans-serif;
+  --head:'Barlow Condensed','Arial Narrow',Arial,sans-serif;
+  --body:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  color-scheme:dark;
+}
+
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  margin:0;
+  background-color:var(--bg);
+  background-image:
+    radial-gradient(900px 520px at 88% -4%,rgba(180,77,255,.18),transparent 70%),
+    radial-gradient(700px 420px at -6% 30%,rgba(255,122,26,.09),transparent 70%);
+  background-repeat:no-repeat;
+  color:var(--fg);
+  font:400 1rem/1.6 var(--body);
+}
+
+body::before {
+  content:"";
+  position:fixed;
+  inset:0 0 auto;
+  height:env(safe-area-inset-top,0px);
+  background:var(--bg);
+  z-index:30;
+  pointer-events:none;
+}
+
+img,svg { max-width:100%; }
+h1,h2,h3,p { margin:0; }
+a { color:inherit; }
+button { font:inherit; color:inherit; cursor:pointer; }
+:focus-visible { outline:2px solid var(--green); outline-offset:3px; }
+
+.wrap {
+  width:100%;
+  max-width:1200px;
+  margin-inline:auto;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+}
+
+/* FRANJA ANIMADA */
+.marquee {
+  background:var(--orange);
+  color:#1a0900;
+  overflow:hidden;
+  white-space:nowrap;
+}
+
+.track {
+  display:flex;
+  width:max-content;
+  animation:mq 34s linear infinite;
+}
+
+.mq {
+  display:flex;
+  gap:2.25rem;
+  padding:.45rem 2.25rem .45rem 0;
+  font:700 .8125rem/1 var(--head);
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+
+.mq span::after {
+  content:"";
+  display:inline-block;
+  width:6px;
+  height:6px;
+  margin-left:2.25rem;
+  background:#1a0900;
+  transform:rotate(45deg);
+  vertical-align:middle;
+}
+
+@keyframes mq {
+  to { transform:translateX(-50%); }
+}
+
+/* ENCABEZADO */
+.top {
+  position:sticky;
+  top:env(safe-area-inset-top,0px);
+  z-index:20;
+  background:rgba(11,6,18,.9);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+
+.top .wrap {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+  padding-block:.6rem;
+}
+
+.logo {
+  display:inline-flex;
+  align-items:center;
+  font:400 2rem/1 var(--display);
+  letter-spacing:.04em;
+  text-decoration:none;
+  color:var(--orange);
+  text-shadow:0 0 12px rgba(255,122,26,.7);
+}
+
+.logo img {
+  display:block;
+  width:100px;
+  height:40px;
+  object-fit:contain;
+}
+
+.logo-fallback { display:none; }
+.logo img.broken { display:none; }
+.logo img.broken + .logo-fallback { display:inline; }
+
+.nav {
+  display:flex;
+  gap:1.75rem;
+}
+
+.nav a {
+  font:600 .9375rem/1 var(--head);
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  text-decoration:none;
+  color:var(--muted);
+  padding:.5rem 0;
+}
+
+.nav a:hover { color:var(--green); }
+
+/* HERO */
+.hero {
+  padding-block:clamp(2rem,6vw,4.5rem) clamp(2.5rem,6vw,5rem);
+}
+
+.hero .wrap {
+  display:grid;
+  grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
+  gap:2rem;
+  align-items:center;
+}
+
+.eyebrow {
+  font:700 .8125rem/1 var(--head);
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--green);
+}
+
+/* ESTILO COMPARTIDO: "COLECCIÓN DE TEMPORADA" Y "EDICIÓN HALLOWEEN" */
+.hero .eyebrow.zombie-title,
+.sec-head .eyebrow {
+  display:inline-block;
+  padding:.35rem .85rem;
+  border-left:4px solid #a8ff60;
+  background:linear-gradient(90deg,rgba(74,130,42,.38),transparent);
+  color:#c2ff79;
+  font-family:var(--display);
+  font-size:clamp(1.5rem,4vw,2.3rem);
+  font-weight:400;
+  line-height:1.1;
+  letter-spacing:.12em;
+  text-shadow:
+    0 0 5px rgba(168,255,96,.85),
+    0 0 14px rgba(65,180,35,.65),
+    2px 2px 0 #27451c;
+}
+
+.hero .eyebrow.zombie-title {
+  transform:none;
+}
+
+.hero h1 {
+  font:400 clamp(6rem,21vw,12.5rem)/.9 var(--display);
+  letter-spacing:.02em;
+  margin-top:1rem;
+  color:#e8782b;
+  text-shadow:
+    0 0 5px rgba(232,120,43,.65),
+    0 0 14px rgba(232,120,43,.4),
+    0 0 28px rgba(232,120,43,.2);
+}
+
+.hero h1 .flick {
+  display:inline-block;
+  color:#e8782b;
+  animation:shortCircuit 2.8s steps(1,end) infinite;
+}
+
+.hero h1 .flick:nth-child(1) { animation-delay:0s; }
+.hero h1 .flick:nth-child(2) { animation-delay:.45s; }
+.hero h1 .flick:nth-child(3) { animation-delay:.9s; }
+
+@keyframes shortCircuit {
+  0%, 10%, 18%, 46%, 54%, 76%, 100% {
+    opacity:1;
+    color:#e8782b;
+    text-shadow:
+      0 0 5px rgba(232,120,43,.75),
+      0 0 14px rgba(232,120,43,.55),
+      0 0 28px rgba(232,120,43,.3);
+  }
+
+  11%, 47%, 77% {
+    opacity:.2;
+    color:#8c421d;
+    text-shadow:none;
+  }
+
+  12%, 48% {
+    opacity:.85;
+    color:#f0a06a;
+    text-shadow:0 0 12px rgba(240,160,106,.65);
+  }
+}
+
+.hero h2 {
+  font:700 clamp(1.5rem,3.4vw,2.25rem)/1.1 var(--head);
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  margin-top:1.25rem;
+  text-wrap:balance;
+}
+
+.hero p.lead {
+  margin-top:1rem;
+  max-width:34rem;
+  color:var(--muted);
+  font-size:1.0625rem;
+}
+
+.cta {
+  display:flex;
+  flex-wrap:wrap;
+  gap:.75rem;
+  margin-top:1.75rem;
+}
+
+.btn {
+  display:inline-block;
+  text-decoration:none;
+  border-radius:3px;
+  padding:.8rem 1.4rem;
+  font:700 1rem/1 var(--head);
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+
+.btn.solid {
+  background:var(--orange);
+  color:#1a0900;
+  box-shadow:0 0 22px rgba(255,122,26,.5);
+}
+
+.btn.solid:hover { background:#ff9a4d; }
+
+/* LOGO 3D */
+.hero-logo {
+  --logo-thickness:28px;
+  position:relative;
+  width:100%;
+  max-width:520px;
+  aspect-ratio:1 / 1;
+  justify-self:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  perspective:1000px;
+  perspective-origin:50% 45%;
+  isolation:isolate;
+}
+
+.hero-logo::before {
+  content:"";
+  position:absolute;
+  inset:8%;
+  border-radius:50%;
+  background:radial-gradient(
+    circle,
+    rgba(255,122,26,.28),
+    rgba(180,77,255,.12) 48%,
+    transparent 72%
+  );
+  filter:blur(12px);
+  animation:logoHalo 4s ease-in-out infinite alternate;
+  pointer-events:none;
+}
+
+.logo-3d {
+  position:relative;
+  width:82%;
+  height:82%;
+  display:block;
+  transform-style:preserve-3d;
+  transform-origin:center center;
+  will-change:transform;
+}
+
+.logo-3d img {
+  position:absolute;
+  inset:0;
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  user-select:none;
+  -webkit-user-drag:none;
+  pointer-events:none;
+}
+
+.logo-3d .logo-depth {
+  backface-visibility:visible;
+  -webkit-backface-visibility:visible;
+}
+
+.logo-3d .logo-face {
+  z-index:100;
+  transform:translateZ(1px);
+  backface-visibility:visible;
+  filter:
+    drop-shadow(2px 2px 0 #ff9a35)
+    drop-shadow(4px 4px 0 #e86b16)
+    drop-shadow(6px 6px 0 #b8470b)
+    drop-shadow(8px 8px 0 #702600)
+    drop-shadow(10px 10px 3px rgba(0,0,0,.85))
+    drop-shadow(0 0 8px rgba(255,122,26,.8))
+    drop-shadow(0 0 20px rgba(255,122,26,.3));
+}
+
+.logo-3d .logo-back {
+  z-index:0;
+  transform:rotateY(180deg) translateZ(var(--logo-thickness));
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+  filter:brightness(.72) saturate(1.2);
+}
+
+.logo-3d::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:101;
+  background:linear-gradient(
+    125deg,
+    transparent 25%,
+    rgba(255,255,255,.15) 45%,
+    transparent 60%
+  );
+  transform:translateZ(3px);
+  mix-blend-mode:screen;
+  pointer-events:none;
+  -webkit-mask-image:var(--logo-mask);
+  mask-image:var(--logo-mask);
+  -webkit-mask-size:100% 100%;
+  mask-size:100% 100%;
+}
+
+.hero-logo-empty {
+  position:absolute;
+  display:none;
+  inset:20%;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  border:2px dashed var(--muted);
+  border-radius:6px;
+  color:var(--muted);
+  font:700 1.1rem/1.5 var(--head);
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+@keyframes logoHalo {
+  from { opacity:.65; transform:scale(.96); }
+  to { opacity:1; transform:scale(1.04); }
+}
+
+/* SECCIONES */
+section { scroll-margin-top:5.5rem; }
+
+.sec {
+  padding-block:clamp(2.5rem,6vw,4.5rem);
+}
+
+.sec-head {
+  display:flex;
+  flex-wrap:wrap;
+  align-items:end;
+  justify-content:space-between;
+  gap:1rem 2rem;
+  margin-bottom:1.75rem;
+}
+
+.sec h2 {
+  font:700 clamp(2rem,5vw,3.25rem)/1 var(--head);
+  letter-spacing:.03em;
+  text-transform:uppercase;
+  text-wrap:balance;
+  margin-top:.6rem;
+}
+
+.count {
+  font:600 .9375rem/1 var(--head);
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--muted);
+  font-variant-numeric:tabular-nums;
+}
+
+/* PRODUCTOS */
+.grid {
+  display:grid;
+  grid-template-columns:1fr;
+  gap:1.25rem;
+}
+
+.card {
+  position:relative;
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:6px;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  min-width:0;
+  cursor:pointer;
+  transition:border-color .2s,box-shadow .2s,transform .2s;
+}
+
+.card:hover {
+  border-color:var(--c);
+  box-shadow:0 0 0 1px var(--c),0 0 30px rgba(180,77,255,.15);
+  transform:translateY(-3px);
+}
+
+.card:focus-visible {
+  outline:2px solid var(--green);
+  outline-offset:4px;
+}
+
+/* EDICIÓN LIMITADA */
+.card.limited {
+  isolation:isolate;
+  border-color:#ff7a1a;
+  background:
+    linear-gradient(145deg,rgba(255,47,166,.13),transparent 48%),
+    var(--surface);
+  box-shadow:
+    0 0 0 1px rgba(255,122,26,.38),
+    0 0 24px rgba(255,47,166,.18);
+}
+
+.card.limited::before {
+  content:"";
+  position:absolute;
+  inset:-2px;
+  z-index:-1;
+  border-radius:inherit;
+  background:linear-gradient(
+    135deg,
+    #ff2fa6,
+    #ff7a1a,
+    #ffd166,
+    #ff2fa6
+  );
+  background-size:300% 300%;
+  opacity:.7;
+  filter:blur(12px);
+  animation:limitedFire 5s ease-in-out infinite;
+  pointer-events:none;
+}
+
+.card.limited:hover {
+  border-color:#ffd166;
+  box-shadow:
+    0 0 0 1px #ffd166,
+    0 0 28px rgba(255,122,26,.38),
+    0 0 50px rgba(255,47,166,.2);
+}
+
+.card.limited .tag {
+  color:#210817;
+  background:linear-gradient(100deg,#ffd166,#ff7a1a,#ff2fa6);
+  box-shadow:0 0 14px rgba(255,122,26,.55);
+}
+
+.card.limited .type { color:#ff9a4d; }
+
+.card.limited h3 {
+  color:#fff0d6;
+  text-shadow:0 0 14px rgba(255,122,26,.25);
+}
+
+@keyframes limitedFire {
+  0%,100% {
+    background-position:0% 50%;
+    opacity:.45;
+  }
+  50% {
+    background-position:100% 50%;
+    opacity:.85;
+  }
+}
+
+/* MÁS VENDIDO: ACABADO DORADO */
+.card.best-seller {
+  border:1px solid #e9bd4c;
+  background:
+    linear-gradient(135deg,
+      #704400 0%,
+      #bd8210 16%,
+      #f5d976 32%,
+      #c18a18 48%,
+      #f0cf65 66%,
+      #9a6508 82%,
+      #e2b844 100%);
+  box-shadow:
+    0 0 0 1px rgba(255,215,106,.3),
+    0 8px 28px rgba(218,155,20,.22);
+}
+
+.card.best-seller .art {
+  background:
+    linear-gradient(135deg,rgba(255,240,185,.22),rgba(92,56,0,.2)),
+    #b77b08;
+  border-bottom-color:rgba(255,232,154,.5);
+}
+
+.card.best-seller .body {
+  background:linear-gradient(
+    145deg,
+    #f5d976 0%,
+    #d9a82e 42%,
+    #b77b08 75%,
+    #8a5700 100%
+  );
+}
+
+.card.best-seller .tag {
+  color:#382000;
+  background:linear-gradient(135deg,#fff4bf 0%,#ffd34f 48%,#b87900 100%);
+  border:1px solid rgba(255,255,255,.55);
+  box-shadow:0 2px 12px rgba(71,42,0,.35);
+}
+
+.card.best-seller .type,
+.card.best-seller h3,
+.card.best-seller .notes,
+.card.best-seller .meta,
+.card.best-seller .price {
+  color:#2b1900;
+  text-shadow:none;
+}
+
+.card.best-seller .notes { opacity:.9; }
+
+.card.best-seller:hover {
+  border-color:#fff0a8;
+  box-shadow:
+    0 0 0 2px rgba(255,222,112,.65),
+    0 12px 34px rgba(218,155,20,.4);
+  transform:translateY(-4px);
+}
+
+/* NUEVO Y NUEVO X3: ACABADO AZUL */
+.card.is-new {
+  border:1px solid #69c8ff;
+  background:linear-gradient(
+    135deg,
+    #073b68 0%,
+    #087db5 30%,
+    #55c7ed 55%,
+    #087db5 78%,
+    #052d56 100%
+  );
+  box-shadow:
+    0 0 0 1px rgba(105,200,255,.3),
+    0 8px 28px rgba(0,145,220,.22);
+}
+
+.card.is-new .art {
+  background:
+    linear-gradient(135deg,rgba(150,225,255,.2),rgba(0,35,80,.25)),
+    #087db5;
+  border-bottom-color:rgba(170,230,255,.45);
+}
+
+.card.is-new .body {
+  background:linear-gradient(
+    145deg,
+    #80d8f5 0%,
+    #168dc2 48%,
+    #064d83 100%
+  );
+}
+
+.card.is-new .tag {
+  color:#03233b;
+  background:linear-gradient(135deg,#d9f7ff,#72dcff 50%,#159bd0);
+  border:1px solid rgba(255,255,255,.55);
+  box-shadow:0 2px 12px rgba(0,35,70,.3);
+}
+
+.card.is-new .type,
+.card.is-new h3,
+.card.is-new .notes,
+.card.is-new .meta,
+.card.is-new .price {
+  color:#03233b;
+  text-shadow:none;
+}
+
+.card.is-new .notes { opacity:.9; }
+
+.card.is-new:hover {
+  border-color:#d9f7ff;
+  box-shadow:
+    0 0 0 2px rgba(130,220,255,.65),
+    0 12px 34px rgba(0,145,220,.4);
+  transform:translateY(-4px);
+}
+
+/* IMÁGENES */
+.art {
+  position:relative;
+  width:100%;
+  aspect-ratio:4 / 3;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 42%,rgba(180,77,255,.18),transparent 66%),
+    var(--surface-2);
+  border-bottom:1px solid var(--line);
+}
+
+.art svg,
+.art .product-photo {
+  display:block;
+  width:100%;
+  height:100%;
+}
+
+.art .product-photo { object-fit:cover; }
+.art svg { filter:drop-shadow(0 0 7px var(--c)); }
+
+.tag {
+  position:absolute;
+  top:.75rem;
+  left:.75rem;
+  background:var(--c);
+  color:#12061f;
+  border-radius:99px;
+  padding:.4rem .75rem;
+  font:700 .8rem/1 var(--head);
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+.body {
+  display:flex;
+  flex-direction:column;
+  gap:.55rem;
+  padding:1.2rem 1.25rem 1.3rem;
+  flex:1;
+}
+
+.type {
+  font:700 .9rem/1 var(--head);
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--c);
+}
+
+.card h3 {
+  font:700 clamp(1.5rem,2.2vw,1.9rem)/1.08 var(--head);
+  letter-spacing:.03em;
+  text-transform:uppercase;
+  text-wrap:balance;
+}
+
+.notes {
+  color:var(--muted);
+  font-size:1rem;
+  line-height:1.6;
+}
+
+.meta {
+  display:flex;
+  flex-wrap:wrap;
+  gap:.4rem 1rem;
+  font:600 .9rem/1.3 var(--head);
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--fg);
+  opacity:.9;
+  margin-top:.25rem;
+}
+
+.buy {
+  display:flex;
+  align-items:center;
+  margin-top:auto;
+  padding-top:1rem;
+}
+
+.price {
+  font:700 1.8rem/1 var(--head);
+  letter-spacing:.02em;
+  font-variant-numeric:tabular-nums;
+}
+
+/* FICHA DEL PRODUCTO */
+.product-modal {
+  position:fixed;
+  inset:0;
+  z-index:100;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:1rem;
+  background:rgba(5,2,10,.82);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+}
+
+.product-modal.is-open { display:flex; }
+
+.product-dialog {
+  position:relative;
+  width:min(100%,760px);
+  max-height:min(90vh,850px);
+  overflow:auto;
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:var(--surface);
+  box-shadow:0 0 45px rgba(180,77,255,.25);
+}
+
+.product-dialog-content {
+  display:grid;
+  grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);
+}
+
+.product-dialog-art {
+  min-height:320px;
+  background:
+    radial-gradient(circle at 50% 42%,rgba(180,77,255,.2),transparent 66%),
+    var(--surface-2);
+}
+
+.product-dialog-art img {
+  display:block;
+  width:100%;
+  height:100%;
+  min-height:320px;
+  object-fit:cover;
+}
+
+.product-dialog-info { padding:2rem; }
+
+.product-dialog-info h2 {
+  margin:.6rem 2rem 1rem 0;
+  font:700 clamp(2rem,6vw,3rem)/1 var(--head);
+  text-transform:uppercase;
+}
+
+.product-dialog-info > p:not(.eyebrow) { color:var(--muted); }
+
+.product-details {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:.75rem;
+  margin-top:1.5rem;
+}
+
+.product-detail {
+  padding:.85rem;
+  border:1px solid var(--line);
+  border-radius:4px;
+  background:var(--surface-2);
+}
+
+.product-detail b {
+  display:block;
+  margin-bottom:.25rem;
+  color:var(--green);
+  font:700 .85rem/1.2 var(--head);
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+
+.product-detail span {
+  color:var(--fg);
+  font-size:.95rem;
+}
+
+.modal-close {
+  position:absolute;
+  top:.75rem;
+  right:.75rem;
+  z-index:2;
+  width:42px;
+  height:42px;
+  border:1px solid var(--line);
+  border-radius:50%;
+  background:var(--bg);
+  font-size:1.5rem;
+  line-height:1;
+}
+
+.modal-close:hover { color:var(--green); }
+
+/* NOSOTROS */
+.about {
+  border-block:1px solid var(--line);
+  background:rgba(21,12,34,.7);
+}
+
+.about .wrap {
+  display:grid;
+  grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);
+  gap:2.5rem;
+  align-items:start;
+}
+
+.about p {
+  color:var(--muted);
+  max-width:36rem;
+  margin-top:1rem;
+}
+
+.facts {
+  display:grid;
+  gap:.75rem;
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+
+.facts li {
+  border:1px solid var(--line);
+  border-left:3px solid var(--pink);
+  border-radius:3px;
+  padding:.9rem 1.1rem;
+  background:var(--surface);
+}
+
+.facts b {
+  display:block;
+  font:700 1.25rem/1.1 var(--head);
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+
+.facts span {
+  color:var(--muted);
+  font-size:.9375rem;
+}
+
+/* PIE */
+.foot { padding-block:2.5rem 3rem; }
+
+.foot .wrap {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  gap:1.5rem 3rem;
+}
+
+.foot .logo { font-size:2.5rem; }
+
+.foot p {
+  max-width:32rem;
+  color:var(--muted);
+  font-size:.875rem;
+  margin-top:.6rem;
+}
+
+.foot nav {
+  display:flex;
+  flex-direction:column;
+  gap:.35rem;
+}
+
+.foot nav a {
+  font:600 .9375rem/1.4 var(--head);
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  text-decoration:none;
+  color:var(--muted);
+}
+
+.foot nav a:hover { color:var(--green); }
+
+.legal {
+  width:100%;
+  border-top:1px solid var(--line);
+  padding-top:1.25rem;
+  font-size:.8125rem;
+  color:var(--muted);
+}
+
+/* TABLET */
+@media (min-width:600px) {
+  .grid {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:1.25rem;
+  }
+}
+
+/* ESCRITORIO */
+@media (min-width:1000px) {
+  .grid {
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:1.5rem;
+  }
+}
+
+/* TABLET Y MÓVIL */
+@media (max-width:860px) {
+  .hero .wrap,
+  .about .wrap {
+    grid-template-columns:minmax(0,1fr);
+  }
+
+  .hero-logo { max-width:380px; }
+  .nav { display:none; }
+}
+
+/* MÓVIL */
+@media (max-width:599px) {
+  .grid {
+    grid-template-columns:1fr;
+    gap:1rem;
+  }
+
+  .art { aspect-ratio:5 / 3; }
+  .body { padding:1.1rem; }
+  .card h3 { font-size:1.55rem; }
+  .notes { font-size:.98rem; }
+  .price { font-size:1.65rem; }
+
+  .product-dialog-content { grid-template-columns:1fr; }
+  .product-dialog-art,
+  .product-dialog-art img {
+    min-height:220px;
+    max-height:260px;
+  }
+  .product-dialog-info { padding:1.25rem; }
+}
+
+/* MOVIMIENTO REDUCIDO */
+@media (prefers-reduced-motion:reduce) {
+  html { scroll-behavior:auto; }
+
+  .track,
+  .hero-logo::before,
+  .card.limited::before {
+    animation:none;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="marquee" role="region" aria-label="Avisos de la tienda">
+  <div class="track">
+    <div class="mq">
+      <span>Edición Halloween 2026</span>
+      <span>Envío gratis desde $12k</span>
+      <span>Lotes de calidad</span>
+      <span>Solo para adultos</span>
+    </div>
+    <div class="mq" aria-hidden="true">
+      <span>Edición Halloween 2026</span>
+      <span>Envío gratis desde $12k</span>
+      <span>Lotes de calidad</span>
+      <span>Solo para adultos</span>
+    </div>
+  </div>
+</div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#inicio" aria-label="EVG, volver al inicio">
+      <img src="images/logo.png" alt="EVG"
+           onerror="this.classList.add('broken')">
+      <span class="logo-fallback">EVG</span>
+    </a>
+
+    <nav class="nav" aria-label="Principal">
+      <a href="#coleccion">Colección</a>
+      <a href="#nosotros">Nosotros</a>
+    </nav>
+  </div>
+</header>
+
+<main id="inicio">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow zombie-title">Colección de temporada</p>
+
+        <h1 aria-label="EVG">
+          <span class="flick">E</span><span class="flick">V</span><span class="flick">G</span>
+        </h1>
+
+        <h2>Este Halloween, el único susto será quedarse sin moño.</h2>
+        <p class="lead">¡Cuidado, te asustas con lo rápido que llegamos!</p>
+
+        <div class="cta">
+          <a class="btn solid" href="#coleccion">Ver colección</a>
+        </div>
+      </div>
+
+      <div class="hero-logo" role="img" aria-label="Logo EVG girando en 3D">
+        <div class="logo-3d" id="logo3d">
+          <img class="logo-face"
+               src="images/logo.png"
+               alt=""
+               draggable="false">
+
+          <img class="logo-back"
+               src="images/logo.png"
+               alt=""
+               aria-hidden="true"
+               draggable="false">
+        </div>
+
+        <div class="hero-logo-empty">
+          Tu logo aquí<br>images/logo.png
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="coleccion">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <p class="eyebrow">Edición Halloween</p>
+          <h2>La colección</h2>
+        </div>
+        <p class="count" id="shown" aria-live="polite"></p>
+      </div>
+
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section class="sec about" id="nosotros">
+    <div class="wrap">
+      <div>
+        <h2>Lotes pequeños. Noches largas.</h2>
+        <p>EVG empezó con una idea simple: un pre-roll que se vea tan bien como se fuma. Cada sabor de esta edición lleva el nombre de algo que aparece solo en octubre.</p>
+      </div>
+
+      <ul class="facts">
+        <li>
+          <b>Flor seleccionada a mano</b>
+          <span>Cada lote se revisa antes de llenar el cono.</span>
+        </li>
+        <li>
+          <b>Papel natural sin blanquear</b>
+          <span>Combustión pareja y sin sabores raros.</span>
+        </li>
+        <li>
+          <b>Tubo hermético</b>
+          <span>Pre-rolls protegidos del aire y la luz.</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div>
+      <a class="logo" href="#inicio" aria-label="EVG, volver arriba">EVG</a>
+      <p>Productos para adultos. Consume con responsabilidad, no conduzcas y mantén el producto fuera del alcance de menores.</p>
+    </div>
+
+    <nav aria-label="Pie de página">
+      <a href="#coleccion">Colección</a>
+      <a href="#nosotros">Nosotros</a>
+    </nav>
+
+    <p class="legal">© 2026 EVG.</p>
+  </div>
+</footer>
+
+<!-- FICHA EMERGENTE DE PRODUCTO -->
+<div class="product-modal" id="productModal"
+     role="dialog" aria-modal="true" aria-labelledby="modalTitle"
+     aria-hidden="true">
+  <div class="product-dialog">
+    <button class="modal-close" id="modalClose"
+            type="button" aria-label="Cerrar ficha">×</button>
+
+    <div class="product-dialog-content">
+      <div class="product-dialog-art" id="modalArt"></div>
+
+      <div class="product-dialog-info">
+        <p class="eyebrow" id="modalType"></p>
+        <h2 id="modalTitle"></h2>
+        <p id="modalDescription"></p>
+
+        <div class="product-details">
+          <div class="product-detail">
+            <b>Genética</b>
+            <span id="modalGenetics"></span>
+          </div>
+          <div class="product-detail">
+            <b>Efectos</b>
+            <span id="modalEffects"></span>
+          </div>
+          <div class="product-detail">
+            <b>Contenido</b>
+            <span id="modalSize"></span>
+          </div>
+          <div class="product-detail">
+            <b>Precio</b>
+            <span id="modalPrice"></span>
+          </div>
+          <div class="product-detail">
+            <b>THC indicado</b>
+            <span id="modalThc"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var PRODUCTS = [
+    {
+      name:"HoneyPuff",
+      type:"Sativa",
+      color:"#ff7a1a",
+      image:"images/pumpkin-haze.jpg",
+      detailImage:"images/honeypuff-detalle.jpg",
+      thc:100,
+      size:"1 × 3 g",
+      price:15,
+      notes:"Conos pre-enrollados con boquilla de madera dorada que suaviza cada pasada. 3 sabores: chocolate, mango y blueberry. Incluyen tubo de vidrio portátil para conservar la frescura y prensador de madera.",
+      genetics:"Por confirmar con el proveedor.",
+      effects:"Por confirmar con el proveedor.",
+      tag:"Más vendido"
+    },
+    {
+      name:"Raw",
+      type:"Híbrida",
+      color:"#5dff4a",
+      image:"images/ghoul-gas.jpg",
+      detailImage:"images/raw-detalle.jpg",
+      thc:100,
+      size:"1 × 2 g",
+      price:12,
+      notes:"Conos pre-enrollados RAW, elaborados con cáñamo orgánico 100% natural y sin refinar.",
+      genetics:"No aplica / confirmar el contenido del producto.",
+      effects:"No indicados por el fabricante.",
+      tag:"Nuevo X3"
+    },
+    {
+      name:"Baby Griselda",
+      type:"Indica",
+      color:"#b44dff",
+      image:"images/witchs-brew.jpg",
+      detailImage:"images/baby-griselda-detalle.jpg",
+      thc:100,
+      size:"1 × 4 g",
+      price:60,
+      notes:"Rellenas con flores premium, diamantes y hash. Boquilla de vidrio y flujo de aire óptimo para conservar la frescura e intensidad del sabor.",
+      genetics:"Por confirmar con el proveedor.",
+      effects:"Por confirmar con el proveedor.",
+      tag:"Edición limitada"
+    },
+    {
+      name:"Sluggers x Backpack Boys LCZ JUICED",
+      type:"Indica",
+      color:"#1affc6",
+      image:"images/zombie-kush.jpg",
+      detailImage:"images/sluggers-detalle.jpg",
+      thc:100,
+      size:"1 × 3.5 g",
+      price:260,
+      notes:"Lemon Cherry Gelato x Z: sabores dulces, frutales y cítricos, con notas de cereza y limón.",
+      genetics:"Lemon Cherry Gelato × Z (según la información proporcionada).",
+      effects:"Por confirmar con el proveedor.",
+      tag:"Edición limitada"
+    },
+    {
+      name:"Pink Lemonade X Pink Acai Dual",
+      type:"Híbrida",
+      color:"#ff2fa6",
+      image:"images/vampire-kiss.jpg",
+      detailImage:"images/pink-lemonade-detalle.jpg",
+      thc:100,
+      size:"1 × 2 g",
+      price:260,
+      notes:"Dos sabores en un dispositivo de 2 gramos: Pink Lemonade cítrica y dulce, junto con las notas tropicales y afrutadas de Pink Acai.",
+      genetics:"Por confirmar con el proveedor.",
+      effects:"Por confirmar con el proveedor.",
+      tag:"Edición limitada"
+    },
+    {
+      name:"Promo blunt Wrap",
+      type:"Híbrida",
+      color:"#ffc21a",
+      image:"images/candy-corn.jpg",
+      detailImage:"images/blunt-wrap-detalle.jpg",
+      thc:100,
+      size:"3 × 9 g",
+      price:14,
+      notes:"Llévate 3 Blunts de Blunt Wrap. Hojas frescas y resistentes para un liado perfecto, combustión lenta y sabor intenso.",
+      genetics:"No aplica / confirmar el contenido del producto.",
+      effects:"No indicados por el fabricante.",
+      tag:"Más vendido"
+    },
+    {
+      name:"Blunt X1",
+      type:"Híbrida",
+      color:"#7dff3a",
+      image:"images/noche-fantasma.jpg",
+      detailImage:"images/blunt-x1-detalle.jpg",
+      thc:100,
+      size:"1 × 2 g",
+      price:7,
+      notes:"Llegó para salvarte en cualquier ocasión del día.",
+      genetics:"Por confirmar con el proveedor.",
+      effects:"Por confirmar con el proveedor.",
+      tag:"Nuevo"
+    }
+  ];
+
+  function escapeHTML(value) {
+    return String(value).replace(/[&<>"']/g, function (char) {
+      return {
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#39;"
+      }[char];
+    });
+  }
+
+  function art(product) {
+    var name = escapeHTML(product.name);
+    var image = escapeHTML(product.image);
+
+    return '<img class="product-photo" src="' + image +
+      '" alt="' + name + '" loading="lazy" ' +
+      'onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'block\'">' +
+      '<svg viewBox="0 0 200 200" role="img" aria-label="' + name +
+      '" style="display:none">' +
+      '<circle cx="100" cy="75" r="37" fill="none" stroke="var(--c)" stroke-width="3"/>' +
+      '<path d="M78 79 Q86 53 100 68 Q114 53 122 79 Q115 99 100 101 Q85 99 78 79Z" fill="var(--c)" opacity=".25" stroke="var(--c)" stroke-width="2"/>' +
+      '<circle cx="90" cy="79" r="3" fill="var(--c)"/>' +
+      '<circle cx="110" cy="79" r="3" fill="var(--c)"/>' +
+      '<path d="M91 90 Q100 97 109 90" fill="none" stroke="var(--c)" stroke-width="2"/>' +
+      '<g transform="translate(100 145) rotate(-18)" fill="var(--c)">' +
+      '<rect x="-70" y="-14" width="140" height="28" rx="14"/>' +
+      '<rect x="-66" y="-6" width="8" height="12" rx="2"/>' +
+      '<polygon points="-58,-5 50,-8 50,8 -58,5"/>' +
+      '<rect x="14" y="-8" width="7" height="16"/>' +
+      '<rect x="50" y="-8" width="10" height="16" rx="3"/>' +
+      '</g></svg>';
+  }
+
+  function card(product, index) {
+    var classes = "card";
+
+    if (product.tag === "Edición limitada") {
+      classes += " limited";
+    }
+
+    if (product.tag === "Más vendido") {
+      classes += " best-seller";
+    }
+
+    if (product.tag === "Nuevo" || product.tag === "Nuevo X3") {
+      classes += " is-new";
+    }
+
+    return '<article class="' + classes + '" style="--c:' +
+      escapeHTML(product.color) + '" tabindex="0" role="button" ' +
+      'aria-label="Ver detalles de ' + escapeHTML(product.name) + '" ' +
+      'data-product-index="' + index + '">' +
+      '<div class="art">' + art(product) +
+      (product.tag ? '<span class="tag">' + escapeHTML(product.tag) + '</span>' : '') +
+      '</div><div class="body">' +
+      '<p class="type">' + escapeHTML(product.type) + '</p>' +
+      '<h3>' + escapeHTML(product.name) + '</h3>' +
+      '<p class="notes">' + escapeHTML(product.notes) + '</p>' +
+      '<p class="meta"><span>THC ' + escapeHTML(product.thc) +
+      '%</span><span>' + escapeHTML(product.size) + '</span></p>' +
+      '<div class="buy"><span class="price">$' +
+      Number(product.price).toFixed(2) + '</span></div>' +
+      '</div></article>';
+  }
+
+  var grid = document.querySelector("#grid");
+  var modal = document.querySelector("#productModal");
+  var closeButton = document.querySelector("#modalClose");
+  var lastCard = null;
+
+  grid.innerHTML = PRODUCTS.map(card).join("");
+  document.querySelector("#shown").textContent =
+    PRODUCTS.length + " productos";
+
+  function openProduct(product, cardElement) {
+    lastCard = cardElement;
+
+    document.querySelector("#modalType").textContent = product.type;
+    document.querySelector("#modalTitle").textContent = product.name;
+    document.querySelector("#modalDescription").textContent = product.notes;
+    document.querySelector("#modalGenetics").textContent = product.genetics;
+    document.querySelector("#modalEffects").textContent = product.effects;
+    document.querySelector("#modalSize").textContent = product.size;
+    document.querySelector("#modalPrice").textContent =
+      "$" + Number(product.price).toFixed(2);
+    document.querySelector("#modalThc").textContent = product.thc + "%";
+
+    var detailImage = product.detailImage || product.image;
+
+    document.querySelector("#modalArt").innerHTML =
+      '<img src="' + escapeHTML(detailImage) + '" alt="' +
+      escapeHTML(product.name) +
+      '" onerror="this.onerror=null;this.src=\'' +
+      escapeHTML(product.image) + '\'">';
+
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    closeButton.focus();
+  }
+
+  function closeProduct() {
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+
+    if (lastCard) lastCard.focus();
+  }
+
+  grid.addEventListener("click", function (event) {
+    var cardElement = event.target.closest("[data-product-index]");
+    if (!cardElement) return;
+
+    openProduct(
+      PRODUCTS[Number(cardElement.dataset.productIndex)],
+      cardElement
+    );
+  });
+
+  grid.addEventListener("keydown", function (event) {
+    if (event.key !== "Enter" && event.key !== " ") return;
+
+    var cardElement = event.target.closest("[data-product-index]");
+    if (!cardElement) return;
+
+    event.preventDefault();
+    openProduct(
+      PRODUCTS[Number(cardElement.dataset.productIndex)],
+      cardElement
+    );
+  });
+
+  closeButton.addEventListener("click", closeProduct);
+
+  modal.addEventListener("click", function (event) {
+    if (event.target === modal) closeProduct();
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape" && modal.classList.contains("is-open")) {
+      closeProduct();
+    }
+  });
+})();
+
+/* Giro automático del logo 3D */
+(function () {
+  "use strict";
+
+  var stage = document.querySelector(".hero-logo");
+  var logo = document.querySelector("#logo3d");
+  var face = logo && logo.querySelector(".logo-face");
+  var back = logo && logo.querySelector(".logo-back");
+  var empty = stage && stage.querySelector(".hero-logo-empty");
+
+  if (!stage || !logo || !face || !back) return;
+
+  var totalLayers = 28;
+  var thickness = 28;
+  var rotation = -22;
+  var frame = 0;
+  var previousTime = 0;
+  var autoSpeed = 0.06;
+
+  stage.style.setProperty("--logo-thickness", thickness + "px");
+
+  function paint() {
+    logo.style.transform = "rotateX(-12deg) rotateY(" + rotation + "deg)";
+  }
+
+  function buildDepth() {
+    logo.querySelectorAll(".logo-depth").forEach(function (layer) {
+      layer.remove();
+    });
+
+    for (var i = totalLayers; i >= 1; i--) {
+      var layer = document.createElement("img");
+      layer.className = "logo-depth";
+      layer.src = face.currentSrc || face.src;
+      layer.alt = "";
+      layer.setAttribute("aria-hidden", "true");
+      layer.draggable = false;
+      layer.style.transform = "translate3d(0,0," + (-i) + "px)";
+
+      var brightness = 0.24 + (1 - i / totalLayers) * 0.30;
+      layer.style.filter =
+        "brightness(" + brightness.toFixed(2) + ") saturate(1.5)";
+      layer.style.zIndex = String(totalLayers - i + 1);
+
+      logo.insertBefore(layer, face);
+    }
+
+    logo.style.setProperty(
+      "--logo-mask",
+      'url("' + (face.currentSrc || face.src) + '")'
+    );
+
+    paint();
+  }
+
+  function showMissingLogo() {
+    logo.style.display = "none";
+    if (empty) empty.style.display = "flex";
+    window.cancelAnimationFrame(frame);
+  }
+
+  function animate(time) {
+    if (!previousTime) previousTime = time;
+
+    var delta = Math.min(time - previousTime, 40);
+    previousTime = time;
+    rotation += autoSpeed * delta;
+    paint();
+    frame = window.requestAnimationFrame(animate);
+  }
+
+  face.addEventListener("load", buildDepth);
+  face.addEventListener("error", showMissingLogo);
+
+  back.addEventListener("error", function () {
+    back.style.display = "none";
+  });
+
+  if (face.complete && face.naturalWidth > 0) {
+    buildDepth();
+  } else if (face.complete && face.naturalWidth === 0) {
+    showMissingLogo();
+  }
+
+  frame = window.requestAnimationFrame(animate);
+
+  window.addEventListener("pagehide", function () {
+    window.cancelAnimationFrame(frame);
+  });
+})();
+</script>
+
+</body>
+</html>
